@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.lang.Math;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,7 +15,7 @@ public class Main {
                 if (split.length > 1) {
                     String author = split[0].replace("\"", "");
                     String title = split[1].replace("\"", "");
-                    items.add(new Book(title, author, 30, ((int) Math.random() * 1500) + 1));
+                    items.add(new Book(title, author, 30, (int)(( Math.random() * 1500) + 1)));
                 }
             }
             br.close();
@@ -42,12 +43,21 @@ public class Main {
         System.out.println(items.size() + " items loaded successfully.");
 
         /* search for a title */
-        LinkedList<LoanableItem> results = searchByTitle("Harry Potter", items);
-        System.out.println(results.size() + " results found: ");
-        for (LoanableItem item : results) {
-            System.out.println(item.simpleString());
-        }
+        System.out.print("Search Term: ");
+        Scanner kb = new Scanner(System.in);
+        String query = kb.nextLine();
+        kb.close();
 
+        LinkedList<LoanableItem> results = searchByTitle(query, items);
+        if (results.size() > 0) {
+            String term = results.size() > 1 ? "results" : "result";
+            System.out.println(results.size() + " " + term + " found: ");
+            for (LoanableItem item : results) {
+                System.out.println(item.simpleString());
+            }
+        } else {
+            System.out.println("No results found.");
+        }
     }
 
     private static LinkedList<LoanableItem> searchByTitle(String query, LinkedList<LoanableItem> items) {
