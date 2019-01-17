@@ -12,7 +12,7 @@ public abstract class LoanableItem {
         this.maxLoanPeriod = maxLoanPeriod;
         this.available = true;
         this.loanedTo = null;
-        this.timeRemaining = null;
+        this.timeRemaining = maxLoanPeriod;
         this.renewCount = 0;
         this.maxRenews = 1;
     }
@@ -25,7 +25,7 @@ public abstract class LoanableItem {
 
     public boolean isAvailable() { return this.available; }
 
-    public boolean getMaxLoanPeriod() { return this.maxLoanPeriod; }
+    public int getMaxLoanPeriod() { return this.maxLoanPeriod; }
 
     public String getTitle() { return this.title; }
 
@@ -52,7 +52,7 @@ public abstract class LoanableItem {
         if(this.loanedTo.returnItem()) {
             this.loanedTo = null;
             this.available = true;
-            this.timeRemaining = null;
+            this.timeRemaining = maxLoanPeriod;
             this.renewCount = 0;
             return true;
         } else {
