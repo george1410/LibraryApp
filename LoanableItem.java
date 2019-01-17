@@ -48,12 +48,16 @@ public abstract class LoanableItem {
         }
     }
 
-    public void returnItem() {
-        this.loanedTo.returnItem();
-        this.loanedTo = null;
-        this.available = true;
-        this.timeRemaining = null;
-        this.renewCount = 0;
+    public boolean returnItem() {
+        if(this.loanedTo.returnItem()) {
+            this.loanedTo = null;
+            this.available = true;
+            this.timeRemaining = null;
+            this.renewCount = 0;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public boolean renewItem() {
