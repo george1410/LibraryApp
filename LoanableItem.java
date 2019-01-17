@@ -37,13 +37,19 @@ public abstract class LoanableItem {
         return this.timeRemaining < 1; 
     }
 
-    public void lendTo(Customer customer) {
-        this.loanedTo = customer;
-        this.available = false;
-        this.timeRemaining = maxLoanPeriod;
+    public boolean lendTo(Customer customer) {
+        if (customer.borrowItem()) {
+            this.loanedTo = customer;
+            this.available = false;
+            this.timeRemaining = maxLoanPeriod;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void returnItem() {
+        this.loanedTo.returnItem();
         this.loanedTo = null;
         this.available = true;
         this.timeRemaining = null;

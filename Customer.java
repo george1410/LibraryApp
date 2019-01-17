@@ -30,4 +30,22 @@ public class Customer {
     public void setName(String name) { this.name = name; }
 
     public void setMaxLoans(int maxLoans) { this.maxLoans = maxLoans; }
+
+    public boolean borrowItem() {
+        if (this.currentLoans < this.maxLoans) {
+            this.currentLoans++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean returnItem() {
+        if (this.currentLoans > 0) {
+            this.currentLoans--;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
