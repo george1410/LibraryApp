@@ -69,4 +69,23 @@ public abstract class LoanableItem {
             return false;
         }
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " maxLoanPeriod='" + getMaxLoanPeriod() + "'" +
+            ", available='" + isAvailable() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", loanedTo='" + getLoanedTo() + "'" +
+            ", timeRemaining='" + getTimeRemaining() + "'" +
+            ", renewCount='" + this.renewCount + "'" +
+            ", maxRenews='" + this.maxRenews + "'" +
+            "}";
+    }
+
+    public String simpleString() {
+        return getTitle();
+    }
+
 }

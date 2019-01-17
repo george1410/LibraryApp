@@ -22,17 +22,36 @@ public class Main {
             System.out.println("Error reading the book data!");
         }
 
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("dvds.csv"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] split = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (split.length > 2) {
+                    String title = split[0].replace("\"", "");
+                    String director = split[1].replace("\"", "");
+                    int runtime = Integer.parseInt(split[2].replace("\"", ""));
+                    items.add(new DVD(title, director, 20, runtime));
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println("Error reading the DVD data!");
+        }
+
         System.out.println(items.size() + " items loaded successfully.");
 
         /* search for a title */
         LinkedList<LoanableItem> results = searchByTitle("Harry Potter", items);
+        System.out.println(results.size() + " results found: ");
         for (LoanableItem item : results) {
-            System.out.println(item.getTitle());
+            System.out.println(item.simpleString());
         }
 
     }
 
     private static LinkedList<LoanableItem> searchByTitle(String query, LinkedList<LoanableItem> items) {
+        System.out.println("\nSearching for \"" + query + "\"...");
         LinkedList<LoanableItem> results = new LinkedList<>();
         for (LoanableItem item : items) {
             if (item.getTitle().toLowerCase().contains(query.toLowerCase())) {
