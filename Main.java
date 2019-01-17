@@ -10,10 +10,10 @@ public class Main {
             BufferedReader br = new BufferedReader(new FileReader("books.csv"));
             String line;
             while ((line = br.readLine()) != null) {
-                String[] split = line.split(",");
+                String[] split = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 if (split.length > 1) {
-                    String author = split[0];
-                    String title = split[1];
+                    String author = split[0].replace("\"", "");
+                    String title = split[1].replace("\"", "");
                     items.add(new Book(title, author, 30, ((int) Math.random() * 1500) + 1));
                 }
             }
@@ -21,5 +21,24 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Error reading the book data!");
         }
+
+        System.out.println(items.size() + " items loaded successfully.");
+
+        /* search for a title */
+        LinkedList<LoanableItem> results = searchByTitle("Harry Potter", items);
+        for (LoanableItem item : results) {
+            System.out.println(item.getTitle());
+        }
+
+    }
+
+    private static LinkedList<LoanableItem> searchByTitle(String query, LinkedList<LoanableItem> items) {
+        LinkedList<LoanableItem> results = new LinkedList<>();
+        for (LoanableItem item : items) {
+            if (item.getTitle().toLowerCase().contains(query.toLowerCase())) {
+                results.push(item);
+            }
+        }
+        return results;
     }
 }
