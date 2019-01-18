@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class Library {
     private ItemContainer itemContainer = new ItemContainer();
 
@@ -12,7 +11,7 @@ public class Library {
         return this.itemContainer;
     }
 
-    public LinkedList<LoanableItem> search(Searcher searcher, String query) {
+    public LinkedList<LoanableItem> search(SearchManager.Searcher searcher, String query) {
         return searcher.execute(query, itemContainer);
     }
 
