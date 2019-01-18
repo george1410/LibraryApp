@@ -4,6 +4,7 @@ import java.io.*;
 public class Library {
     private ItemContainer itemContainer = new ItemContainer();
     private LinkedList<Customer> customersList = new LinkedList<>();
+    private Customer currentCustomer;
 
     Library() {
         itemContainer.loadBooksFromFile("books.csv");
@@ -30,6 +31,14 @@ public class Library {
             }
         }
         return null;
+    }
+
+    public void setCurrentCustomer(Customer customer) {
+        this.currentCustomer = customer;
+    }
+
+    public Customer getCurrentCustomer() {
+        return this.currentCustomer;
     }
 
     public void addNewCustomer(Customer customer) {
