@@ -14,7 +14,8 @@ public class Main {
         String query = kb.nextLine();
         kb.close();
 
-        LinkedList<LoanableItem> results = searchByTitle(query, library.getAllItems());
+        LinkedList<LoanableItem> results = library.search(new SearchManager.TitleSearcher(), query);
+
         if (results.size() > 0) {
             String term = results.size() > 1 ? "results" : "result";
             System.out.println(results.size() + " " + term + " found: ");
@@ -24,16 +25,5 @@ public class Main {
         } else {
             System.out.println("No results found.");
         }
-    }
-
-    private static LinkedList<LoanableItem> searchByTitle(String query, LinkedList<LoanableItem> items) {
-        System.out.println("\nSearching for \"" + query + "\"...");
-        LinkedList<LoanableItem> results = new LinkedList<>();
-        for (LoanableItem item : items) {
-            if (item.getTitle().toLowerCase().contains(query.toLowerCase())) {
-                results.push(item);
-            }
-        }
-        return results;
     }
 }

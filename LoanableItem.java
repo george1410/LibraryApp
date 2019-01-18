@@ -70,6 +70,9 @@ public abstract class LoanableItem {
         }
     }
 
+    public boolean titleContains(String query) {
+        return this.title.toLowerCase().contains(query.toLowerCase());
+    }
 
     @Override
     public String toString() {
