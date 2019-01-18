@@ -26,6 +26,20 @@ public class UserInterface {
         System.out.println("Hello, " + library.getCurrentCustomer().getName() + "\n");
 
         int selection = mainMenu.show();
+
+        switch (selection) {
+            case 0:
+                showSearch(new SearchManager.TitleSearcher());
+                break;
+            case 1: 
+                System.out.println("Search Books by Title");
+                break;
+            case 2: 
+                System.out.println("Search DVDs by Title");
+                break;
+            default:
+                break;
+        }
     }
 
 
