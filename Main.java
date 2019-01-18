@@ -6,41 +6,7 @@ import java.lang.Math;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList<LoanableItem> items = new LinkedList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("books.csv"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] split = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                if (split.length > 1) {
-                    String author = split[0].replace("\"", "");
-                    String title = split[1].replace("\"", "");
-                    items.add(new Book(title, author, 30, (int)(( Math.random() * 1500) + 1)));
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            System.out.println("Error reading the book data!");
-        }
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("dvds.csv"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] split = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                if (split.length > 2) {
-                    String title = split[0].replace("\"", "");
-                    String director = split[1].replace("\"", "");
-                    int runtime = Integer.parseInt(split[2].replace("\"", ""));
-                    items.add(new DVD(title, director, 20, runtime));
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            System.out.println("Error reading the DVD data!");
-        }
-
-        System.out.println(items.size() + " items loaded successfully.");
+        Library library = new Library();
 
         /* search for a title */
         System.out.print("Search Term: ");
@@ -48,7 +14,7 @@ public class Main {
         String query = kb.nextLine();
         kb.close();
 
-        LinkedList<LoanableItem> results = searchByTitle(query, items);
+        LinkedList<LoanableItem> results = searchByTitle(query, library.getAllItems());
         if (results.size() > 0) {
             String term = results.size() > 1 ? "results" : "result";
             System.out.println(results.size() + " " + term + " found: ");
