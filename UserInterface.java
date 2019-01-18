@@ -27,9 +27,9 @@ public class UserInterface {
 
     }
 
-    private void searchByTitle() {
+    private void showSearch(SearchManager.Searcher searcher) {
         String query = new InputGrabber().grab("Search Term: ");
-        SearchResult searchResult = library.search(new SearchManager.TitleSearcher(), query);
+        SearchResult searchResult = library.search(searcher, query);
 
         System.out.println(searchResult.getNumberOfResultsInWords() + " found:");
         if (searchResult.hasResults()) {
