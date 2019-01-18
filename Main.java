@@ -14,13 +14,12 @@ public class Main {
         String query = kb.nextLine();
         kb.close();
 
-        LinkedList<LoanableItem> results = library.search(new SearchManager.TitleSearcher(), query);
+        SearchResult searchResult = library.search(new SearchManager.TitleSearcher(), query);
 
-        if (results.size() > 0) {
-            String term = results.size() > 1 ? "results" : "result";
-            System.out.println(results.size() + " " + term + " found: ");
-            for (LoanableItem item : results) {
-                System.out.println(item.simpleString());
+        if (searchResult.hasResults()) {
+            System.out.println(searchResult.getNumberOfResultsInWords() + " found:");
+            for (LoanableItem item : searchResult) {
+                System.out.println(item.toString());
             }
         } else {
             System.out.println("No results found.");

@@ -19,9 +19,10 @@ public class Book extends LoanableItem {
 
     @Override
     public String toString() {
-        return "Book: {" +
-            " author='" + getAuthor() + "'" +
-            ", pageCount='" + getPageCount() + "'" +
+        return "Book: {\n" +
+            "  author: " + getAuthor() + "\n" +
+            "  pageCount: " + getPageCount() + "\n" +
+            "  " + super.toString() + "\n" +
             "}";
     }
 

@@ -11,7 +11,7 @@ public class Library {
         return this.itemContainer;
     }
 
-    public LinkedList<LoanableItem> search(SearchManager.Searcher searcher, String query) {
+    public SearchResult search(SearchManager.Searcher searcher, String query) {
         return searcher.execute(query, itemContainer);
     }
 

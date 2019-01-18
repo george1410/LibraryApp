@@ -76,15 +76,15 @@ public abstract class LoanableItem {
 
     @Override
     public String toString() {
-        return "{" +
-            " maxLoanPeriod='" + getMaxLoanPeriod() + "'" +
-            ", available='" + isAvailable() + "'" +
-            ", title='" + getTitle() + "'" +
-            ", loanedTo='" + getLoanedTo() + "'" +
-            ", timeRemaining='" + getTimeRemaining() + "'" +
-            ", renewCount='" + this.renewCount + "'" +
-            ", maxRenews='" + this.maxRenews + "'" +
-            "}";
+        return "LoanableItem: {\n" +
+            "    maxLoanPeriod: " + getMaxLoanPeriod() + "\n" +
+            "    available:" + isAvailable() + "\n" +
+            "    title: " + getTitle() + "\n" +
+            "    loanedTo: " + getLoanedTo() + "\n" +
+            "    timeRemaining: " + getTimeRemaining() + "\n" +
+            "    renewCount: " + this.renewCount + "\n" +
+            "    maxRenews: " + this.maxRenews + "\n" +
+            "  }";
     }
 
     public String simpleString() {

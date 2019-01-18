@@ -19,17 +19,10 @@ public class DVD extends LoanableItem {
 
     @Override
     public String toString() {
-        return "DVD: {" +
-            " director='" + getDirector() + "'" +
-            ", runtime='" + getRuntime() + "'" +
+        return "DVD: {\n" +
+            "  director: " + getDirector() + "\n" +
+            "  runtime: " + getRuntime() + "\n" +
+            "  " + super.toString() + "\n" +
             "}";
     }
-
-    public String simpleString() {
-        return "DVD: {" +
-            "Title: " + getTitle() + ", " +
-            "Director: " + getDirector() + ", " + 
-            "Runtime: " + getRuntime() + "}";
-    }
-    
 }
