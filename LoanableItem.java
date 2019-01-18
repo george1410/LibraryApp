@@ -1,4 +1,5 @@
 public abstract class LoanableItem {
+    private static int count = 0;
     private int maxLoanPeriod;
     private boolean available;
     private String title;
@@ -6,6 +7,7 @@ public abstract class LoanableItem {
     private int timeRemaining;
     private int renewCount;
     private int maxRenews;
+    private int id;
 
     LoanableItem(String title, int maxLoanPeriod) {
         this.title = title;
@@ -15,6 +17,7 @@ public abstract class LoanableItem {
         this.timeRemaining = maxLoanPeriod;
         this.renewCount = 0;
         this.maxRenews = 1;
+        this.id = ++count;
     }
 
     public void setMaxLoanPeriod(int maxLoanPeriod) { this.maxLoanPeriod = maxLoanPeriod; }
@@ -32,6 +35,10 @@ public abstract class LoanableItem {
     public Customer getLoanedTo() { return this.loanedTo; }
 
     public int getTimeRemaining() { return this.timeRemaining; }
+
+    public int getId() { return this.id; }
+
+    public void setId(int id) { this.id = id; }
 
     public boolean isOverdue() { 
         return this.timeRemaining < 1; 
@@ -84,6 +91,7 @@ public abstract class LoanableItem {
             "    timeRemaining: " + getTimeRemaining() + "\n" +
             "    renewCount: " + this.renewCount + "\n" +
             "    maxRenews: " + this.maxRenews + "\n" +
+            "    id: " + this.id + "\n" +
             "  }";
     }
 

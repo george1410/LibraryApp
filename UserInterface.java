@@ -21,10 +21,12 @@ public class UserInterface {
 
         library.setCurrentCustomer(library.getCustomerById(customerId));
         System.out.println("Hello, " + library.getCurrentCustomer().getName());
+
+        mainMenu();
     }
 
     private void mainMenu() {
-
+        
     }
 
     private void showSearch(SearchManager.Searcher searcher) {
