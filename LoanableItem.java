@@ -38,7 +38,7 @@ public abstract class LoanableItem {
     }
 
     public boolean lendTo(Customer customer) {
-        if (customer.borrowItem()) {
+        if (customer.canBorrowItem()) {
             this.loanedTo = customer;
             this.available = false;
             this.timeRemaining = maxLoanPeriod;

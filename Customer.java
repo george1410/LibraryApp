@@ -31,7 +31,7 @@ public class Customer {
 
     public void setMaxLoans(int maxLoans) { this.maxLoans = maxLoans; }
 
-    public boolean borrowItem() {
+    public boolean canBorrowItem() {
         if (this.currentLoans < this.maxLoans) {
             this.currentLoans++;
             return true;
