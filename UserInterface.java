@@ -29,13 +29,13 @@ public class UserInterface {
 
         switch (selection) {
             case 0:
-                showSearch(new SearchManager.TitleSearcher());
+                showSearch(new SearchManager.TitleSearcher(SearchManager.ALL));
                 break;
             case 1: 
-                System.out.println("Search Books by Title");
+                showSearch(new SearchManager.TitleSearcher(SearchManager.BOOK));
                 break;
             case 2: 
-                System.out.println("Search DVDs by Title");
+                showSearch(new SearchManager.TitleSearcher(SearchManager.DVD));
                 break;
             default:
                 break;
