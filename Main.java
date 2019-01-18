@@ -8,21 +8,12 @@ public class Main {
     public static void main(String[] args) {
         Library library = new Library();
 
-        /* search for a title */
-        System.out.print("Search Term: ");
-        Scanner kb = new Scanner(System.in);
-        String query = kb.nextLine();
-        kb.close();
-
+        String query = new InputGrabber().grab("Search Term: ");
         SearchResult searchResult = library.search(new SearchManager.TitleSearcher(), query);
 
+        System.out.println(searchResult.getNumberOfResultsInWords() + " found:");
         if (searchResult.hasResults()) {
-            System.out.println(searchResult.getNumberOfResultsInWords() + " found:");
-            for (LoanableItem item : searchResult) {
-                System.out.println(item.toString());
-            }
-        } else {
-            System.out.println("No results found.");
+            System.out.println(searchResult.stringifyAll());
         }
     }
 }

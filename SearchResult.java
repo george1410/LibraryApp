@@ -14,4 +14,12 @@ public class SearchResult extends LinkedList<LoanableItem> {
             return this.size() + " results";
         }
     }
+
+    public String stringifyAll() {
+        String output = "";
+        for (LoanableItem item : this) {
+            output += item.toString() + "\n";
+        }
+        return output;
+    }
 }
