@@ -1,8 +1,11 @@
 public class UserInterface {
     Library library;
+    Menu mainMenu;
 
     UserInterface(Library library) {
         this.library = library;
+
+        mainMenu = new Menu("Main Menu", new String[]{"Search all by title", "Search books by title", "Search DVDs by title"});
 
         while(true) {
             runUI();
@@ -20,14 +23,11 @@ public class UserInterface {
         } while (library.getCustomerById(customerId) == null);
 
         library.setCurrentCustomer(library.getCustomerById(customerId));
-        System.out.println("Hello, " + library.getCurrentCustomer().getName());
+        System.out.println("Hello, " + library.getCurrentCustomer().getName() + "\n");
 
-        mainMenu();
+        int selection = mainMenu.show();
     }
 
-    private void mainMenu() {
-        
-    }
 
     private void showSearch(SearchManager.Searcher searcher) {
         String query = new InputGrabber().grab("Search Term: ");
